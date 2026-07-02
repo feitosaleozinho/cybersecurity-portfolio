@@ -1,3 +1,27 @@
+# Implementação de PKI com HSM
+
+**Instituição:** SENAI Cyber e IA
+**Autor:** Leonardo Oliveira Feitosa
+**Ano:** 2026
+
+---
+
+## Descrição
+
+Laboratório prático de implementação de Infraestrutura de Chaves Públicas (PKI) com proteção de chave privada via Hardware Security Module (HSM) simulado. O ambiente demonstra como organizações corporativas protegem certificados digitais e comunicações seguras em produção.
+
+---
+
+## Arquitetura
+
+    Usuário / Cliente
+          ↓ HTTPS
+    Servidor Web (Apache)
+          ↓ solicita certificado
+    Autoridade Certificadora (Root CA)
+          ↓ usa chave privada
+    HSM — SoftHSM (PKCS#11)
+
 ---
 
 ## Stack utilizada
@@ -17,7 +41,7 @@
 ### 1. HSM (SoftHSM)
 - Inicialização do token HSM com PIN
 - Geração de par de chaves RSA-2048 dentro do HSM (nunca exportável)
-- Listagem e verificação dos objetos no token via `pkcs11-tool`
+- Listagem e verificação dos objetos no token via pkcs11-tool
 
 ### 2. Root CA
 - Geração de CSR usando a chave protegida pelo HSM via engine PKCS#11
@@ -25,27 +49,27 @@
 - Instalação da CA no sistema operacional
 
 ### 3. Certificado do servidor
-- Geração de CSR do servidor web (`CN=lab-server`)
+- Geração de CSR do servidor web (CN=lab-server)
 - Assinatura do certificado pelo Root CA via HSM (validade 365 dias)
-- Verificação da cadeia: `openssl verify -CAfile ca.crt server.crt`
+- Verificação da cadeia: openssl verify -CAfile ca.crt server.crt
 
 ### 4. Apache HTTPS
-- Configuração de `SSLCertificateFile`, `SSLCertificateKeyFile` e `SSLCertificateChainFile`
+- Configuração de SSLCertificateFile, SSLCertificateKeyFile e SSLCertificateChainFile
 - Ativação do módulo SSL e reinicialização do serviço
-- Validação com `openssl s_client -connect localhost:443` — resultado: `Verify return code: 0 (ok)`
+- Validação com openssl s_client -connect localhost:443 — resultado: Verify return code: 0 (ok)
 
 ### 5. HashiCorp Vault como CA Intermediária
 - Deploy do Vault em modo dev
-- Criação de PKI para CA intermediária (`pki_int`)
+- Criação de PKI para CA intermediária (pki_int)
 - Assinatura da CA intermediária pelo Root CA (HSM)
-- Emissão automática de certificados TLS para o domínio `app.lab.local`
+- Emissão automática de certificados TLS para o domínio app.lab.local
 - Revogação de certificado e download da CRL
 
 ---
 
 ## Evidências
 
-As capturas de tela de cada etapa estão disponíveis na pasta [`evidencias/`](./evidencias/).
+As capturas de tela de cada etapa estão disponíveis na pasta [evidencias/](./evidencias/).
 
 | # | Etapa |
 |---|---|
@@ -74,4 +98,4 @@ As capturas de tela de cada etapa estão disponíveis na pasta [`evidencias/`](.
 
 ## Relatório técnico
 
-O relatório completo com todos os comandos e evidências está disponível em [`docs/relatorio-pki-hsm.pdf`](./docs/relatorio-pki-hsm.pdf).
+O relatório completo com todos os comandos e evidências está disponível em [docs/relatorio-pki-hsm.pdf](./docs/relatorio-pki-hsm.pdf).
