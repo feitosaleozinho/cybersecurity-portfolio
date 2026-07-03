@@ -20,7 +20,7 @@ Cada projeto inclui relatório técnico, evidências e documentação de arquite
 ## Sobre
 
 **Leonardo Oliveira Feitosa**
-Estudante de Segurança Cibernética — SENAI Cyber e IA
+Estudante de Segurança Cibernética - SENAI Cyber e IA
 Certificação: Microsoft SC-900 | SC-200 em preparação
 
 [LinkedIn](https://linkedin.com/in/feitosaleo) · [GitHub](https://github.com/feitosaleozinho)
