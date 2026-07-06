@@ -1,4 +1,4 @@
-# NDR + EDR + SOAR — Hospital VidaPlena
+# NDR + EDR + SOAR - Hospital VidaPlena
 
 **Instituição:** SENAI Cyber e IA
 **Equipe:** AptX Team
