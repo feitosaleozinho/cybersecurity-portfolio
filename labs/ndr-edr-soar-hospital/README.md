@@ -48,17 +48,17 @@ Simulação completa de um ambiente de segurança corporativo para o Hospital Vi
 - Ambiente virtualizado no Proxmox com múltiplas VMs simulando rede hospitalar
 - Port mirroring via `tc` para espelhamento de tráfego para o Security Onion
 
-### 2. NDR — Security Onion
+### 2. NDR - Security Onion
 - Captura e análise de tráfego de rede com Suricata e Zeek
 - Regras customizadas de detecção de ransomware
 - Centralização de alertas do Security Onion no Wazuh
 
-### 3. EDR / SIEM — Wazuh + Elastic Security
+### 3. EDR / SIEM - Wazuh + Elastic Security
 - Regras personalizadas de detecção no Wazuh
 - Correlação de eventos e geração de alertas
 - Integração com Elastic Security para visualização
 
-### 4. SOAR — n8n
+### 4. SOAR - n8n
 - Workflow de automação com trigger via webhook
 - Integração com a API do Wazuh para resposta automática
 - Notificação por e-mail via Gmail SMTP
